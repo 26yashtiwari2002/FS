@@ -1,51 +1,94 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import './App.css'
-import uploadFile from './service/api'; 
+import { useEffect, useRef, useState } from "react";
+import { UploadFile } from "./service/api";
+import "./App.css";
 
 function App() {
-  const uploadRef=useRef(null);
+  const [file, setFile] = useState(null);
+  const [res, setRes] = useState(null);
+  const [copied, setCopied] = useState(false);
+
+  const uploadRef = useRef();
+
   const handleUpload = () => {
     uploadRef.current.click();
-  }
-  const [file, setFile] = useState(null);
-  const [res,setRes]=useState(null);
+  };
 
-  //api call with data
-  useEffect(()=>{
-    const apiCall=async ()=>{
-      if(file){
-        const filedata=new FormData();
-      filedata.append('filename', file.name);
-      filedata.append('file', file);
-
-      const response =await uploadFile(filedata);
-      setRes(response.path);
-
-      }
-
-
-
+  const handleCopy = () => {
+    if (res) {
+      navigator.clipboard.writeText(res);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // reset after 2 sec
     }
+  };
+
+  const handleOpen = () => {
+    if (res) {
+      window.open(res, "_blank");
+    }
+  };
+
+  useEffect(() => {
+    const apiCall = async () => {
+      if (file) {
+        const fileData = new FormData();
+        fileData.append("name", file.name);
+        fileData.append("file", file);
+
+        const response = await UploadFile(fileData);
+        setRes(response?.path);
+      }
+    };
     apiCall();
-
-  },[file])
-
+  }, [file]);
 
   return (
-    <div className='container'>
-      <h1>Qwickshare</h1>
-      <div>
-        <button onClick={() => handleUpload()}>Upload</button>
-        <input type="file" ref={uploadRef} style={{ display: 'none' }} onChange={(event) => setFile(event.target.files[0])} />
+    <div className="container">
+      <h1>File Sharing App</h1>
 
-      </div>
       <div>
-        <a href={res}>{res}</a>
+        <button onClick={handleUpload}>Upload</button>
+        <input
+          type="file"
+          ref={uploadRef}
+          style={{ display: "none" }}
+          onChange={(event) => setFile(event.target.files[0])}
+        />
       </div>
 
+      {res && (
+        <div
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            flexWrap: "wrap",
+          }}
+        >
+          <a href={res}>{res}</a>
+
+          <button onClick={handleCopy}>
+            {copied ? (
+              <span
+                style={{
+                  //green checkmark
+                  color: "green",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                ✔
+              </span>
+            ) : (
+              "Copy"
+            )}
+          </button>
+
+          <button onClick={handleOpen}>Download</button>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

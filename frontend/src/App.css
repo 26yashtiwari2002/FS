@@ -1,9 +1,40 @@
+
+
+/* Container Styles */
 .container {
-  background-color: rgb(137, 193, 137);
+  background-color: rgb(153, 0, 0);
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+/* Button Styles */
+button {
+  background-color: white;
+  color: maroon;
+  border: 2px solid maroon;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Link Styles */
+a {
+  flex: 1;
+  overflow-wrap: anywhere;
+  color: #F8BEBE;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+/* Copy Button Checkmark */
+button span {
+  color: green;
 }

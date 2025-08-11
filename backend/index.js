@@ -2,22 +2,25 @@ import express from "express";
 import Connection from "./database/db.js";
 import router from "./routes/api.js";
 import cors from "cors";
-const app = express();
-const PORT = process.env.PORT;
+import dotenv from "dotenv";
 import path from "path";
-import dotenv from 'dotenv';
 
+const app = express();
 dotenv.config();
 
+const PORT = process.env.PORT;
 app.use(cors());
 app.use('/',router);
 
+const __dirname = path.resolve();
 
-const __dirname=path.resolve();
-app.use(express.static(path.join(__dirname, '/frontend', 'dist')));
+app.use(express.static(path.join(__dirname,'/frontend/dist')));
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname,"frontend","dist","index.html"));
+})
 
-app.listen(PORT, () => {
-  console.log("server is running on port", PORT);
-});
+app.listen(PORT,()=>
+    console.log("server is running on port: ",PORT)
+);
 Connection();
  
