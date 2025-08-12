@@ -8,7 +8,7 @@ import path from "path";
 const app = express();
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||9000;
 app.use(cors());
 app.use('/',router);
 
@@ -23,4 +23,3 @@ app.listen(PORT,()=>
     console.log("server is running on port: ",PORT)
 );
 Connection();
- 

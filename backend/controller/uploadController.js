@@ -1,16 +1,13 @@
 import fileModel from "../model/fileModel.js";
 import path from "path";
 import dotenv from "dotenv";
-
+dotenv.config();
 
 export const UploadController = async (req,res)=>{
     try{
-        dotenv.config();
+        
         const backendUrl = process.env.BACKEND_URL;
 
-        
-       
-        
         const fileObject = {
             path:req.file.path,
             name:req.file.originalname,
