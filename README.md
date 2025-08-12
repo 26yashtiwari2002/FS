@@ -27,6 +27,7 @@ Live project at : https://fs-ng8j.onrender.com/
 ---
 
 ## 📁 Folder Structure
+```
 ├── backend
 │ ├── index.js # Server entry point
 │ ├── database/db.js # MongoDB connection
@@ -40,7 +41,11 @@ Live project at : https://fs-ng8j.onrender.com/
 │ ├── src/ # React components
 │ ├── dist/ # Production build
 │ └── vite.config.js
-└──.env packages/package.json
+│
+├── packages
+│ └── package.json
+└── .env
+```
 
 
 ##🚀 Deployment: RENDER
