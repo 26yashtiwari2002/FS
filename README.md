@@ -1,4 +1,6 @@
-<img width="2879" height="1539" alt="image" src="https://github.com/user-attachments/assets/ba93d14c-6e68-4008-b6f7-9a35458ed4ea" /># 📂 File Sharing App
+# 📂 File Sharing App
+
+<img width="2879" height="1539" alt="image" src="https://github.com/user-attachments/assets/ba93d14c-6e68-4008-b6f7-9a35458ed4ea" />
 
 A simple and secure file sharing web application where users can upload files and share download links with others.  
 Built using **Node.js**, **Express**, **MongoDB**, and **React**.
